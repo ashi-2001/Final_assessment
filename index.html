@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script src=
+"https://code.jquery.com/jquery-3.6.0.min.js">
+    </script>
+
+
+
+ <script>
+
+        function ajaxCall() {
+            $.ajax({
+
+                // Our sample url to make request 
+                url:
+                    'https://localhost:7230/api/AccountType',
+                    crossDomain: true,
+
+                // Type of Request
+                type: "GET",
+
+                // Function to call when to
+                // request is ok 
+                success: function (data) {
+                    let x = JSON.stringify(data);
+
+
+                    myObj = JSON.parse(x);
+  let text = "<table border='1'>"
+  for (let x in myObj) {
+    text += "<tr><td>" + myObj[x].name + "</td></tr>";
+  }
+  text += "</table>"
+  document.getElementById("output").innerHTML = text;
+
+                    //document.getElementById("output").innerHTML=x;
+                    console.log(x);
+                },
+
+                // Error handling 
+                error: function (error) {
+                    console.log(`Error ${error}`);
+                }
+            });
+        }
+        ajaxCall();
+    </script>
+</head>
+
+<body>
+<span id="output"></span>
+
+   
+</body>
+
+</html>
